@@ -1,0 +1,19 @@
+table{
+    padding-top: 10px;
+    position: relative;
+    margin: 0 auto;
+    width: 60%;
+    border-spacing: 10px;
+}
+
+td{
+    background-color: rgb(133, 132, 132);
+    border: 3px solid rgb(10, 5, 5);
+    height: 200px;
+}
+
+td:hover{
+    cursor: pointer;
+    transform: scale3d(1.005,1.005,1.005);
+    border: 3px solid rgb(90, 80, 80);
+}
