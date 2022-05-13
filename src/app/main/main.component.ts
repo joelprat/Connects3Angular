@@ -33,7 +33,7 @@ export class MainComponent{
     if (this.jugadorO.getTorn() && !this.jugadorX.getTorn()) return this.jugadorO.getFitxa();
     if (!this.jugadorO.getTorn() && this.jugadorX.getTorn()) return this.jugadorX.getFitxa();
 
-    return "error";
+    return "errora";
   }
 
 }
