@@ -1,29 +1,68 @@
-<h1>¡Tres en ralla con amigos!</h1>
+<h1 id="title">TRES EN RAYA</h1>
 
-<div *ngIf="this.jugadorX.getTorn(); then turnoX else turnoO"></div>
+<div *ngIf="!this.winner && this.counter!=9"><h2>Turno: jugador {{this.turno}}</h2></div>
 
-<ng-template #turnoX>
-    <h2>Turno: jugador X</h2>
-</ng-template>
-<ng-template #turnoO>
-    <h2>Turno: jugador O</h2>
-</ng-template>
 
-<table>
-    <tr>
-        <td id="0" (click)="writeTablero('0')"></td>
-        <td id="1" (click)="writeTablero('1')"></td>
-        <td id="2" (click)="writeTablero('2')"></td>
-    </tr>
-    <tr>
-        <td id="3" (click)="writeTablero('3')"></td>
-        <td id="4" (click)="writeTablero('4')"></td>
-        <td id="5" (click)="writeTablero('5')"></td>
-    </tr>
-    <tr>
-        <td id="6" (click)="writeTablero('6')"></td>
-        <td id="7" (click)="writeTablero('7')"></td>
-        <td id="8" (click)="writeTablero('8')"></td>  
-    </tr>
-</table>
+<div *ngIf="!this.winner && this.counter!=9">
+    <table>
+        <tr>
+            <td id="0" (click)="writeTablero('0')"
+            [class.OcupadaX]="this.tablero.posicions[0].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[0].getTexto() == 'O'" >
+            </td>
+
+            <td id="1" (click)="writeTablero('1')"
+            [class.OcupadaX]="this.tablero.posicions[1].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[1].getTexto() == 'O'" >
+            </td>
+
+            <td id="2" (click)="writeTablero('2')"
+            [class.OcupadaX]="this.tablero.posicions[2].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[2].getTexto() == 'O'" >
+            </td>
+        </tr>
+        <tr>
+            <td id="3" (click)="writeTablero('3')"
+            [class.OcupadaX]="this.tablero.posicions[3].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[3].getTexto() == 'O'" >
+            </td>
+
+            <td id="4" (click)="writeTablero('4')"
+            [class.OcupadaX]="this.tablero.posicions[4].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[4].getTexto() == 'O'" >
+            </td>
+
+            <td id="5" (click)="writeTablero('5')"
+            [class.OcupadaX]="this.tablero.posicions[5].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[5].getTexto() == 'O'" >
+            </td>
+        </tr>
+        <tr>
+            <td id="6" (click)="writeTablero('6')"
+            [class.OcupadaX]="this.tablero.posicions[6].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[6].getTexto() == 'O'" >
+            </td>
+
+            <td id="7" (click)="writeTablero('7')"
+            [class.OcupadaX]="this.tablero.posicions[7].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[7].getTexto() == 'O'" >
+            </td>
+
+            <td id="8" (click)="writeTablero('8')"
+            [class.OcupadaX]="this.tablero.posicions[8].getTexto() == 'X'"
+            [class.OcupadaO]="this.tablero.posicions[8].getTexto() == 'O'" >
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="this.winner">
+    <h1>EL JUGADOR {{this.ganador}} HA GANADO!</h1>
+    <button (click)="this.reset()" >Volver a jugar</button>
+</div>
+
+<div *ngIf="this.counter >= 9 && !this.winner">
+    <h1>EMPATE</h1>
+    <button (click)="this.reset()" >Volver a jugar</button>
+</div>
 

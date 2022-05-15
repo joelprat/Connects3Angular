@@ -12,53 +12,74 @@ export class MainComponent{
 
   public jugadorX: Jugador;
   public jugadorO: Jugador;
-  private tablero: Tablero;
+  public tablero: Tablero;
+  public winner:boolean;
+  public turno: string;
+  public counter: number;
+  public ganador: string;
 
   constructor(){
-    this.jugadorX = new Jugador("X", true, 1);
-    this.jugadorO = new Jugador("O", false, 0);
+    this.jugadorX = new Jugador("X", true);
+    this.jugadorO = new Jugador("O", false);
     this.tablero = new Tablero();
-  }
-
-  ngOnInit(): void {
+    this.turno = "X";
+    this.winner = false;
+    this.counter = 0;
+    this.ganador = "";
   }
 
   public modificarTablero(position: number){
-    if(this.tablero.posicions[position] == -1){
-      let torn = this.tornActual();
-      this.tablero.posicions[position] = torn;
+    if(!this.tablero.posicions[position].getOcupada()){
+      this.counter++;
+      this.tablero.posicions[position].setOcupada(true);
+      this.tablero.posicions[position].setTexto(this.turno);
+      this.winner = this.tablero.comprobacio3ralla(this.turno);
+      this.ganador = this.turno;
+      this.canviarTornsJugadors();
+      return false;
     }
-    else if(this.tablero.posicions[position] == 0 || this.tablero.posicions[position] == 1){
+    else{
       alert("Posición ocupada");
+      return true;
     }
   }
 
-  public tornActual():number{
-    if (this.jugadorO.getTorn() && !this.jugadorX.getTorn()){
-      //this.jugadorO.canviTorn(false);
-      //this.jugadorX.canviTorn(true);
-      return this.jugadorO.getNumTablero();
-    } 
-    if (!this.jugadorO.getTorn() && this.jugadorX.getTorn()){
-      //this.jugadorO.canviTorn(true);
-      //this.jugadorX.canviTorn(false);
-      return this.jugadorX.getNumTablero();
+  public canviarTornPartida(): string{
+    if (this.jugadorO.getTorn() && !this.jugadorX.getTorn()) return "O";
+    if (!this.jugadorO.getTorn() && this.jugadorX.getTorn()) return "X";
+    return "";
+  }
+
+
+
+  public canviarTornsJugadors(){
+    if (this.turno == "X"){
+      this.jugadorO.canviTorn(true);
+      this.jugadorX.canviTorn(false);
+    }else{
+      this.jugadorO.canviTorn(false);
+      this.jugadorX.canviTorn(true);
     }
-    return -1;
+    this.turno = this.canviarTornPartida();
   }
 
 
   public writeTablero(posicion:string){
-    
-    let textoTablero = document.getElementById(posicion)?.innerHTML;
 
-    if(this.tornActual() == 0){
-      this.modificarTablero(parseInt(posicion));
-      textoTablero = this.jugadorO.getFitxa();
+    let posicioTablero = document.getElementById(posicion);
+    let posicionOcupada = this.modificarTablero(parseInt(posicion));
+
+    if(this.turno == "X"){
+      if (posicioTablero && !posicionOcupada) posicioTablero.innerHTML = this.tablero.posicions[parseInt(posicion)].getTexto();
     }
-    else if(this.tornActual() == 1){
-      textoTablero = this.jugadorO.getFitxa();
+    else if(this.turno == "O"){
+      if (posicioTablero && !posicionOcupada) posicioTablero.innerHTML = this.tablero.posicions[parseInt(posicion)].getTexto();
     }
   }
 
+  public reset(){
+    this.winner=false;
+    this.tablero = new Tablero();
+    this.counter = 0;
+  }
 }

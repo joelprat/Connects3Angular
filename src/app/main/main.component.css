@@ -1,19 +1,100 @@
+
 table{
-    padding-top: 10px;
+    margin: auto;
     position: relative;
-    margin: 0 auto;
-    width: 60%;
+    width: 50%;
     border-spacing: 10px;
+    font-family: 'Koulen', cursive;
 }
 
-td{
-    background-color: rgb(133, 132, 132);
-    border: 3px solid rgb(10, 5, 5);
-    height: 200px;
+#title{
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    margin-top: 5px;
+    margin:0;
+}
+
+tr{
+    height: 250px;
+}
+
+td{ 
+    position: absolute;
+    width: 100px;
+    color: white;
+    position: static;
+    font-size: 35px;
+    background-color: #dd567d;
+    border: 3px solid #581845;
+    box-shadow: 5px 5px 5px #581845;
 }
 
 td:hover{
     cursor: pointer;
-    transform: scale3d(1.005,1.005,1.005);
-    border: 3px solid rgb(90, 80, 80);
+    transform: scale3d(1.01,1.01,1.01);
+}
+
+.OcupadaX{
+    background-color: #ff5733;
+    border: 3px solid #c24226;
+}
+
+.OcupadaX:hover{
+    transform: none;
+    cursor:auto;
+}
+
+.OcupadaO{
+    background-color: #ffc305;
+    border: 3px solid #c99a02;
+}
+
+.OcupadaO:hover{
+    transform: scale3d(1,1,1);
+    cursor:auto;
+}
+
+button{
+    cursor:pointer;
+    font-size: 30px;
+    height: 100px;
+    width: 200px;
+    background-color: #581845;
+    color: white;
+    font-family: 'Koulen', cursive;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 600px) {
+    html{
+        width: 100%;
+    }
+    body{
+        font-family: 'Dosis', sans-serif;
+        margin:0;
+        background-color: #9003cf;
+        color: white;
+        text-align: center;
+    }
+    table{
+        margin: auto;
+        position: relative;
+        width: 80%;
+        border-spacing: 10px;
+        font-family: 'Koulen', cursive;
+    }
+
+    #title{
+        width: 100%;
+        margin-top: 10px;
+        font-size: 25px;
+    }
+
+    tr{
+        height: 150px;
+    }
 }
