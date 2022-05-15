@@ -1,29 +1,29 @@
 <h1>¡Tres en ralla con amigos!</h1>
-        <h2>Turno del jugador </h2>
 
-        <table>
-            <tr>
-                <td (click)="writeText(0)"></td>
-                <td (click)="writeText(1)"></td>
-                <td (click)="writeText(2)"></td>
-            </tr>
-            <tr>
-                <td (click)="writeText(3)"></td>
-                <td (click)="writeText(4)"></td>
-                <td (click)="writeText(5)"></td>
-            </tr>
-            <tr>
-                <td (click)="writeText(6)"></td>
-                <td (click)="writeText(7)"></td>
-                <td (click)="writeText(8)"></td>  
-            </tr>
-        </table>
+<div *ngIf="this.jugadorX.getTorn(); then turnoX else turnoO"></div>
 
-        <div *ngIf="this.jugadorX.getTorn(); then turnoX else turnoO"></div>
+<ng-template #turnoX>
+    <h2>Turno: jugador X</h2>
+</ng-template>
+<ng-template #turnoO>
+    <h2>Turno: jugador O</h2>
+</ng-template>
 
-        <ng-template #turnoX>
-            <h2>Turno: jugador X</h2>
-        </ng-template>
-        <ng-template #turnoO>
-            <h2>Turno: jugador O</h2>
-        </ng-template>
+<table>
+    <tr>
+        <td id="0" (click)="writeTablero('0')"></td>
+        <td id="1" (click)="writeTablero('1')"></td>
+        <td id="2" (click)="writeTablero('2')"></td>
+    </tr>
+    <tr>
+        <td id="3" (click)="writeTablero('3')"></td>
+        <td id="4" (click)="writeTablero('4')"></td>
+        <td id="5" (click)="writeTablero('5')"></td>
+    </tr>
+    <tr>
+        <td id="6" (click)="writeTablero('6')"></td>
+        <td id="7" (click)="writeTablero('7')"></td>
+        <td id="8" (click)="writeTablero('8')"></td>  
+    </tr>
+</table>
+

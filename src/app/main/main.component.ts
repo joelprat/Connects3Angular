@@ -15,25 +15,50 @@ export class MainComponent{
   private tablero: Tablero;
 
   constructor(){
-    this.jugadorX = new Jugador("X", true);
-    this.jugadorO = new Jugador("O", false);
+    this.jugadorX = new Jugador("X", true, 1);
+    this.jugadorO = new Jugador("O", false, 0);
     this.tablero = new Tablero();
   }
 
   ngOnInit(): void {
   }
 
-  public writeText(position: number){
+  public modificarTablero(position: number){
     if(this.tablero.posicions[position] == -1){
-      this.tablero.posicions[position] = 
+      let torn = this.tornActual();
+      this.tablero.posicions[position] = torn;
+    }
+    else if(this.tablero.posicions[position] == 0 || this.tablero.posicions[position] == 1){
+      alert("Posición ocupada");
     }
   }
 
-  public tornActual():string{
-    if (this.jugadorO.getTorn() && !this.jugadorX.getTorn()) return this.jugadorO.getFitxa();
-    if (!this.jugadorO.getTorn() && this.jugadorX.getTorn()) return this.jugadorX.getFitxa();
+  public tornActual():number{
+    if (this.jugadorO.getTorn() && !this.jugadorX.getTorn()){
+      //this.jugadorO.canviTorn(false);
+      //this.jugadorX.canviTorn(true);
+      return this.jugadorO.getNumTablero();
+    } 
+    if (!this.jugadorO.getTorn() && this.jugadorX.getTorn()){
+      //this.jugadorO.canviTorn(true);
+      //this.jugadorX.canviTorn(false);
+      return this.jugadorX.getNumTablero();
+    }
+    return -1;
+  }
 
-    return "errora";
+
+  public writeTablero(posicion:string){
+    
+    let textoTablero = document.getElementById(posicion)?.innerHTML;
+
+    if(this.tornActual() == 0){
+      this.modificarTablero(parseInt(posicion));
+      textoTablero = this.jugadorO.getFitxa();
+    }
+    else if(this.tornActual() == 1){
+      textoTablero = this.jugadorO.getFitxa();
+    }
   }
 
 }
