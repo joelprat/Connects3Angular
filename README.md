@@ -1,4 +1,4 @@
-# 3enRallaAngular
+# Connects3Angular
 This project was generated with Angular CLI. The main objective was to put in practice my basic knowledgement about angular.
 
 ## Development server
